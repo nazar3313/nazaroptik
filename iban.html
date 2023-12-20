@@ -148,6 +148,7 @@
         line-height: 30px;
         font-family: cursive;
     }
+
     .iban {
         color: #ffffff;
     }
@@ -166,25 +167,55 @@
                     <div class="li-background d-flex justify-content-center align-items-center"><a class="ahref">
                             <i class="fas fa-money-check-alt"></i>İban Bilgileri</a></div>
 
-                    <div class="form-group">
-                        <label class="iban mt-3" for="iban">Ziraat iban:</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="iban" name="iban"
-                                value="TR123456789012345678901234" readonly>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    onclick="copyToClipboard()">Copy</button>
-                            </div>
-                        </div>
+                            <div class="form-group">
+                <label class="iban" for="iban1">Halkbank:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="iban1" name="iban1" value="TR111111111111111111111111" readonly>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('iban1')">Copy</button>
                     </div>
+                </div>
+                <small class="form-text text-muted d-none" id="copyNotification1">IBAN 1 copied to clipboard!</small>
+            </div>
+
+            <div class="form-group">
+                <label class="iban" for="iban2">Ziraat Bankası:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="iban2" name="iban2" value="TR222222222222222222222222" readonly>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('iban2')">Copy</button>
+                    </div>
+                </div>
+                <small class="form-text text-muted d-none" id="copyNotification2">IBAN 2 copied to clipboard!</small>
+            </div>
+
+            <div class="form-group">
+                <label class="iban" for="iban3">FinansBank:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="iban3" name="iban3" value="TR510011100000000093942538" readonly>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('iban3')">Copy</button>
+                    </div>
+                </div>
+                <small class="form-text text-muted d-none" id="copyNotification3">IBAN 3 copied to clipboard!</small>
+            </div>
                 </li>
             </ul>
     </div>
     <script>
-        function copyToClipboard() {
-            var ibanInput = document.getElementById('iban');
+        function copyToClipboard(ibanId) {
+            var ibanInput = document.getElementById(ibanId);
             ibanInput.select();
             document.execCommand('copy');
+            
+            // Kopyalandı bildirimini göster
+            var copyNotification = document.getElementById('copyNotification');
+            copyNotification.classList.remove('d-none');
+            
+            // 2 saniye sonra bildirimi gizle
+            setTimeout(function() {
+                copyNotification.classList.add('d-none');
+            }, 2000);
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
