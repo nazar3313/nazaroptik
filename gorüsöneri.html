@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Görüş Ve Öneri</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+body {
+    background-color: bisque;
+}
+.background-renk {
+    padding: 20px;
+}
+</style>
+
+<body>
+    <div class="container mt-5 background-renk">
+        <h1 class="mb-4 text-center">Görüş Ve Öneri</h1>
+        
+        <form action="https://formspree.io/f/mjvnbodk" method="POST">
+            <div class="form-group">
+                <label for="email">Mail Adresiniz:</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Şikayet veya Önerinizi yazınız :</label>
+                <textarea class="form-control" name="message" rows="4" required></textarea>
+            </div>
+
+            <!-- Diğer form alanlarını buraya ekleyebilirsiniz -->
+
+            <div class="d-flex justify-content-center align-items-center "><button type="submit" class="btn btn-primary ">Gönder</button></div>
+        </form>
+    </div>
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    var feedbackForm = document.getElementById('feedbackForm');
+
+    function submitForm() {
+        // Form verilerini al
+        var formData = new FormData(feedbackForm);
+
+        // Formsquare kullanarak verileri gönder
+        formsquare.send(formData, {
+            endpoint: 'BURAYA_FORMSQUARE_ENDPOINTINIZI_YAZIN',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            onSuccess: function (response) {
+                console.log('Başarıyla gönderildi:', response);
+                // İsteğe bağlı: Gönderim başarılı olduktan sonra yapılacak işlemler
+            },
+            onError: function (error) {
+                console.error('Gönderme hatası:', error);
+                // İsteğe bağlı: Gönderim başarısız olduğunda yapılacak işlemler
+            },
+        });
+    }
+
+    // Butona tıklandığında formu gönder
+    var submitButton = feedbackForm.querySelector('button[type="button"]');
+    submitButton.addEventListener('click', submitForm);
+});
+
+</script>
+    <!-- Bootstrap JS ve Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
